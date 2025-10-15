@@ -4,41 +4,6 @@ Este projeto implementa um pipeline completo e robusto para treinar e avaliar mo
 
 O fluxo de trabalho inclui pré-processamento de dados, otimização de hiperparâmetros, treinamento, otimização de limiar de classificação e avaliação final com geração de relatórios e gráficos.
 
-## Estrutura de Arquivos
-
-├── data/
-│   ├── eCODE/                  # Pasta contendo os subdiretórios com os sinais (.dat, .hea)
-│   ├── annotations.csv         # Metadados brutos
-│   ├── chagas_code.csv         # Metadados brutos
-│   ├── comorbities.csv         # Metadados brutos
-│   ├── master_dataset.csv      # Gerado pelo preprocess.py
-│   ├── train_split.csv         # Gerado pelo train.py
-│   ├── val_split.csv           # Gerado pelo train.py
-│   └── test_split.csv          # Gerado pelo train.py
-│
-├── models/
-│   ├── cnn.py                  # Arquitetura de Rede Neural Convolucional 1D
-│   └── transformer.py          # Arquitetura baseada em Transformer
-│
-├── outputs/                    # Pasta onde todos os resultados dos experimentos são salvos
-│   └── cnn_20251006_192700/     # Exemplo de pasta de um experimento
-│       ├── best_model.pth.tar
-│       ├── classification_report.txt
-│       ├── confusion_matrix.png
-│       ├── learning_curve.png
-│       ├── results.json
-│       └── roc_curve.png
-│
-├── src/
-│   ├── dataloader.py           # Carregador de dados otimizado para PyTorch
-│   ├── optimize.py             # Script para otimização de hiperparâmetros
-│   ├── train.py                # Script principal para treinamento e avaliação
-│   └── utils.py                # Funções auxiliares (splits, métricas, plots)
-│
-├── preprocess.py               # Script para limpeza e preparação inicial dos dados
-├── requirements.txt            # Dependências do projeto
-└── README.md                   # Este arquivo
-
 ## Configuração do Ambiente
 
 1.  **Estrutura de Pastas:** Certifique-se de que a pasta `eCODE`, contendo todos os subdiretórios de sinais (`S0000000`, `S0010000`, etc.), esteja localizada dentro da pasta `data/`.
