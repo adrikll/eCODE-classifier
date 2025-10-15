@@ -1,0 +1,11 @@
+data/
+*.csv
+outputs/
+runs/
+*.pth.tar
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+.DS_Store
+Thumbs.db

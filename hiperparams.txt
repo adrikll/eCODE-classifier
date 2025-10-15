@@ -1,0 +1,30 @@
+python3 -m src.optimize --model transformer --n-trials 20 --n-folds 5
+Usando dispositivo: cuda
+Calculando o peso para a classe positiva (pos_weight)...
+Peso calculado: 30.69 (para cada amostra positiva)
+--- Iniciando Random Search com 20 tentativas ---
+
+[Tentativa 1/20] Testando: {'learning_rate': 5e-05, 'batch_size': 128, 'optimizer': 'AdamW', 'weight_decay': 0.0}
+  -> Fold 1/5
+     G-Mean do Fold: 0.7372
+  -> Fold 2/5
+     G-Mean do Fold: 0.7389
+  -> Fold 3/5
+     G-Mean do Fold: 0.7385
+  -> Fold 4/5
+     G-Mean do Fold: 0.7382
+  -> Fold 5/5
+     G-Mean do Fold: 0.7318
+  -> Média G-Mean da Tentativa: 0.7369
+  *** Novo melhor resultado encontrado! ***
+
+[Tentativa 2/20] Testando: {'learning_rate': 0.0005, 'batch_size': 64, 'optimizer': 'AdamW', 'weight_decay': 0.0}
+  -> Fold 1/5
+     G-Mean do Fold: 0.7272
+  -> Fold 2/5
+     G-Mean do Fold: 0.7230
+  -> Fold 3/5
+     G-Mean do Fold: 0.7258
+  -> Fold 4/5
+     G-Mean do Fold: 0.7312
+  -> Fold 5/5
