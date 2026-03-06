@@ -2,13 +2,10 @@ import os
 import shutil
 import zipfile
 
-# --- Configuração das pastas e prefixo ---
 pasta_downloads = os.path.join(os.path.expanduser('~'), 'Downloads')
 pasta_destino = os.path.join(pasta_downloads, 'eCODE')
-# !!!!! ATENÇÃO: AJUSTE ESTE PREFIXO COM BASE NO NOME REAL DO SEU ARQUIVO !!!!!
-prefixo_arquivo = "drive-download-20251002" # <--- TENTE USAR UM PREFIXO MAIS CURTO
+prefixo_arquivo = "drive-download-20251002"
 
-# --- Criação da pasta de destino ---
 if not os.path.exists(pasta_destino):
     print(f"Criando a pasta de destino: {pasta_destino}")
     os.makedirs(pasta_destino)
@@ -17,21 +14,15 @@ else:
 
 print("\nIniciando a busca e processamento dos arquivos...")
 
-# --- Busca dos arquivos na pasta de downloads ---
 try:
     arquivos_na_pasta = os.listdir(pasta_downloads)
 except FileNotFoundError:
     print(f"ERRO: A pasta de Downloads não foi encontrada em '{pasta_downloads}'")
     exit()
 
-# --- Processamento dos arquivos ZIP ---
 arquivos_encontrados = 0
 for nome_arquivo in arquivos_na_pasta:
-    # --- LINHA DE DEPURAÇÃO ---
-    # A linha abaixo vai imprimir cada arquivo que o script está analisando.
-    # print(f"Verificando: {nome_arquivo}") 
 
-    # Verifica se o arquivo corresponde ao padrão (prefixo e extensão .zip)
     if nome_arquivo.startswith(prefixo_arquivo) and nome_arquivo.endswith(".zip"):
         arquivos_encontrados += 1 # Conta os arquivos que correspondem
         caminho_original = os.path.join(pasta_downloads, nome_arquivo)
@@ -66,7 +57,6 @@ for nome_arquivo in arquivos_na_pasta:
         except Exception as e:
             print(f"  -> ERRO ao processar o arquivo '{nome_arquivo}': {e}")
 
-# Mensagem final informando se algum arquivo foi processado
 if arquivos_encontrados == 0:
     print("\nAVISO: Nenhum arquivo com o prefixo especificado foi encontrado na pasta Downloads.")
 
