@@ -20,19 +20,17 @@ def run_split(base_csv_path='data/full_dataset.csv', data_dir='data/'):
         print(f"Erro: O arquivo base '{base_csv_path}' não foi encontrado. Execute o preprocess.py primeiro.")
         return
         
-    # Carregamento padrão sem otimização de tipo de dados
     df = pd.read_csv(base_csv_path)
     
     groups = df['id_patient']
     y = df['chagas']
 
-    # Primeiro Split: 80% para Treino vs. 20% para (Val + Teste)
     sgkf_train_test = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)
     train_indices, temp_indices = next(sgkf_train_test.split(df, y, groups))
     df_train = df.iloc[train_indices]
     df_temp = df.iloc[temp_indices]
     
-    # Segundo Split: Dividir o df_temp (20% do total) ao meio (10% val, 10% test)
+    #segundo Split: Dividir o df_temp (20% do total) ao meio (10% val, 10% test)
     temp_groups = df_temp['id_patient']
     temp_y = df_temp['chagas']
     
