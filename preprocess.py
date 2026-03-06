@@ -25,28 +25,21 @@ def pre_validate_signals(df, data_root_dir):
     for index, row in tqdm(df.iterrows(), total=len(df), desc="Validando Sinais"):
         exam_id = row['exam_id']
         relative_path = row['file_path']
-        # Constrói o caminho base, sem extensão
         full_path_base = os.path.join(data_root_dir, relative_path)
         
-        # --- LÓGICA DE VALIDAÇÃO CORRIGIDA ---
         path_hea = full_path_base + ".hea"
         path_dat = full_path_base + ".dat"
         
-        # 1. Verifica se AMBOS os arquivos existem primeiro
         if os.path.exists(path_hea) and os.path.exists(path_dat):
             try:
-                # 2. Se existem, tenta ler o cabeçalho para checar as derivações
                 header = wfdb.rdheader(full_path_base)
                 if header.n_sig == 8:
                     valid_exam_ids.append(exam_id)
             except Exception:
-                # Ignora se o arquivo .hea estiver corrompido
                 continue
     
     return valid_exam_ids
 
-# --- Início do Script Principal ---
-# O resto do script permanece o mesmo.
 path_annotations = 'data/annotations.csv'
 path_chagas = 'data/chagas_code.csv'
 path_comorbities = 'data/comorbities.csv'
@@ -103,10 +96,7 @@ output_filename = 'master_dataset.csv'
 print(f"Salvando o dataset final pré-processado e VALIDADO em '{output_filename}'...")
 df_final.to_csv(output_filename, index=False)
 
-print("\n------------------------------------------------------------")
-print("---               Pré-processamento Concluído              ---")
-print("------------------------------------------------------------")
+print("Pré-processamento Concluído!!")
 print(f"Total de exames com metadados e rótulo:      {num_total_sinais_mapeados}")
 print(f"Total de sinais validados (8 derivações):      {num_sinais_validados}")
 print(f"Total de registros no master_dataset.csv final:  {len(df_final)}")
-print("------------------------------------------------------------\n")
